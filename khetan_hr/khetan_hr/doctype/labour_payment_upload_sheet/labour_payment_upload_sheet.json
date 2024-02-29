@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-12-06 13:32:29.818092",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "employee_type",
+  "advance",
+  "cpn",
+  "column_break_6fktr",
+  "fine",
+  "previous_balance",
+  "cashpaid",
+  "bankpaid"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.employee_type",
+   "fieldname": "employee_type",
+   "fieldtype": "Data",
+   "label": "Employee Type"
+  },
+  {
+   "fieldname": "advance",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Advance",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cpn",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Cpn",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_6fktr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fine",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Fine",
+   "precision": "2"
+  },
+  {
+   "fieldname": "previous_balance",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Previous Balance",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cashpaid",
+   "fieldtype": "Float",
+   "label": "Cashpaid",
+   "precision": "2"
+  },
+  {
+   "fieldname": "bankpaid",
+   "fieldtype": "Float",
+   "label": "Bankpaid",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-02-29 11:28:19.056987",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "Labour Payment Upload Sheet",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

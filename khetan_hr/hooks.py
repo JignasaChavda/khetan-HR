@@ -107,7 +107,10 @@ app_license = "MIT"
 # DocType Class
 # ---------------
 # Override standard doctype classes
-
+override_doctype_class = {
+	"Employee Checkin": "khetan_hr.employee_checkin_overrides.EmployeeCheckin",
+    "Employee": "khetan_hr.employee_overrides.Employee"
+}
 # override_doctype_class = {
 # 	"ToDo": "custom_app.overrides.CustomToDo"
 # }
@@ -213,3 +216,55 @@ app_license = "MIT"
 # auth_hooks = [
 # 	"khetan_hr.auth.validate"
 # ]
+fixtures = [
+    {"dt":"Custom Field","filters":[
+        [
+            "module","in",[
+                "Khetan HR"
+            ]
+        ]
+    ]},
+    {"dt":"Property Setter","filters":[
+        [
+            "module","in",[
+                "Khetan HR"
+            ]
+        ]
+    ]},
+    {"dt":"Client Script","filters":[
+        [
+            "module","in",[
+                "Khetan HR"
+            ]
+        ]
+    ]},
+    {"dt":"Server Script","filters":[
+        [
+            "module","in",[
+                "Khetan HR"
+            ]
+        ]
+    ]},
+    {"dt":"Report","filters":[
+        [
+            "module","in",[
+                "Khetan HR"
+            ]
+        ]
+    ]},
+    {"dt":"Role","filters":[
+        [
+            "name","in",[
+                "Employee Creator"
+            ]
+        ]
+    ]},
+    {"dt":"Custom DocPerm","filters":[
+        [
+            "name","in",[
+                "1c8ad451db"
+            ]
+        ]
+    ]},
+
+]

@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:{category}:{date}",
+ "creation": "2023-12-06 10:56:39.715739",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "category",
+  "column_break_vmggt",
+  "company",
+  "get_data",
+  "section_break_hbuzl",
+  "employee_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Employee Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vmggt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Khetan Udyog",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get Data"
+  },
+  {
+   "fieldname": "section_break_hbuzl",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "employee_details",
+   "fieldtype": "Table",
+   "label": "Employee Details",
+   "options": "Labour Payment Upload Sheet"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-29 11:28:19.251526",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "Labour Payment Upload",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
