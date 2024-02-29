@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Attendance Table</title>
+<style>
+  body {
+    margin: 20px; /* Adjust the margin as needed */
+    font-size: 8px;
+  }
+
+
+
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin below the table */
+  }
+
+
+
+
+  th{
+    border: 1px solid #000000;
+    padding: auto;
+    text-align: left;
+    font-size: 10px;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  td{
+    border: 1px solid #000000;
+    padding: auto;
+    font-size: 10px;
+    text-align: left;
+     /* Prevent text wrapping */
+  }
+  h3 {
+    text-align: center;
+    margin-top: 5px;
+  }
+
+
+
+
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+<h4 style="font-size:20px;">Department: {{ department }}</h4>
+<table>
+  <thead>
+    <tr>
+      <th>SNo</th>
+      <th>E. Code</th>
+      <th>Name</th>
+      <th>Shift</th>
+      <th>S. InTime</th>
+      <th>S. OutTime</th>
+      <th>A. InTime</th>
+      <th>A. OutTime</th>
+      <th>Work Dur.</th>
+      <th>OT</th>
+      <th>Tot. Dur.</th>
+      <th>LateBy</th>
+      <th>EarlyGoingBy</th>
+      <th>Status</th>
+      <th>Punch Records</th>
+      <th>Employe Type </th>
+  
+    </tr>
+  </thead>
+  <tbody>
+    {% for department in ename %}
+    <tr>
+      <td>{{ department._index+1 }}</td>
+      <td>{{ department.employee }}</td>
+      <td>{{ department.employee_name }}</td>
+      <td>{{ department.shift }}</td>
+      <td>{{ department.start_time }}</td>
+      <td>{{ department.end_time }}</td>
+      <td>{{ department.check_in_time }}</td>
+      <td>{{ department.check_out_time }}</td>
+      <td>{{ department.new_hours }}</td>
+      <td>{{ department.overtime }}</td>
+      <td>{{department.custom_total_hours}}</td>
+      <td>{{department.custom_late_entry}}</td>
+      <td>{{department.custom_early_exit}}</td>
+      <td>{{ department.status }}</td>
+      <td>{{department.custom_remarks}}</td>
+      <td>{{department.custom_employee_type}}</td>
+   
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
