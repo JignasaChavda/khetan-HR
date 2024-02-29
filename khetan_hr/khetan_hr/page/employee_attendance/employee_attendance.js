@@ -2,7 +2,7 @@
 frappe.pages['employee-attendance'].on_page_load = function(wrapper) {
 	var page = frappe.ui.make_app_page({
 		parent: wrapper,
-		title: 'Daily Attendance',
+		title: 'Daily Attendance Report',
 		single_column: true
 	});
 	
@@ -222,7 +222,7 @@ frappe.pages['employee-attendance'].on_page_load = function(wrapper) {
  
  
 	frappe.call({
-		method: 'khetanhrms.khetan_hrms.page.employee_attendance.employee_attendance.get_lwf_details',
+		method: 'khetan_hr.khetan_hr.page.employee_attendance.employee_attendance.get_lwf_details',
 		args: args,
 		callback: function (response) {
 			if (response.message) {
