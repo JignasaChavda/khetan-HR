@@ -11,7 +11,7 @@
   "javascript": null,
   "json": null,
   "letter_head": null,
-  "modified": "2024-02-29 11:24:19.835615",
+  "modified": "2024-02-29 12:17:47.552010",
   "module": "Khetan HR",
   "name": "Labour Payment",
   "prepared_report": 0,
@@ -32,13 +32,13 @@
     "parent": "Labour Payment",
     "parentfield": "roles",
     "parenttype": "Report",
-    "role": "System Manager"
+    "role": "HR Manager"
    },
    {
     "parent": "Labour Payment",
     "parentfield": "roles",
     "parenttype": "Report",
-    "role": "HR Manager"
+    "role": "System Manager"
    },
    {
     "parent": "Labour Payment",
