@@ -61,18 +61,19 @@ class Employee(NestedSet):
 	def validate_dob(self):
 		dob = self.date_of_birth
 
-		today = getdate(now())
-		birth_date = getdate(dob)
+		if dob is not None:
+			today = getdate(now())
+			birth_date = getdate(dob)
 
-		age = today.year - birth_date.year
-		month_diff = today.month - birth_date.month
-		day_diff = today.day - birth_date.day
+			age = today.year - birth_date.year
+			month_diff = today.month - birth_date.month
+			day_diff = today.day - birth_date.day
 
-		if age < 18 or (age == 18 and (month_diff < 0 or (month_diff == 0 and day_diff < 0))):
-			# Display an error message
-			frappe.throw(_("Employee must be 18 years or older."))
+			if age < 18 or (age == 18 and (month_diff < 0 or (month_diff == 0 and day_diff < 0))):
+				# Display an error message
+				frappe.throw(_("Employee must be 18 years or older."))
 
-			frappe.validated = False
+				frappe.validated = False
 		
 	def after_rename(self, old, new, merge):
 		self.db_set("employee", new)
