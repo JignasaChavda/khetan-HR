@@ -1,0 +1,169 @@
+{
+ "_liked_by": "[\"Administrator\"]",
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-03-28 21:52:13.221664",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "department",
+  "designation",
+  "employee_type",
+  "total_hours",
+  "daily_rate",
+  "payment",
+  "column_break_p9pqp",
+  "advance",
+  "canteen_deduction",
+  "fine",
+  "prv_balance",
+  "cashpaid",
+  "bankpaid",
+  "remaining_balance",
+  "total_payment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "columns": 2,
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name"
+  },
+  {
+   "fetch_from": "employee.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fetch_from": "employee.employee_type",
+   "fieldname": "employee_type",
+   "fieldtype": "Data",
+   "label": "Employee Type"
+  },
+  {
+   "fieldname": "total_hours",
+   "fieldtype": "Float",
+   "label": "Total Hours",
+   "precision": "2"
+  },
+  {
+   "fetch_from": "employee.daily_rate",
+   "fieldname": "daily_rate",
+   "fieldtype": "Currency",
+   "label": "Daily Rate",
+   "precision": "2"
+  },
+  {
+   "columns": 1,
+   "fieldname": "payment",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Payment",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_p9pqp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "advance",
+   "fieldtype": "Currency",
+   "label": "Advance",
+   "precision": "2"
+  },
+  {
+   "fieldname": "canteen_deduction",
+   "fieldtype": "Currency",
+   "label": "Canteen Deduction",
+   "precision": "2"
+  },
+  {
+   "fieldname": "fine",
+   "fieldtype": "Currency",
+   "label": "Fine",
+   "precision": "2"
+  },
+  {
+   "fieldname": "prv_balance",
+   "fieldtype": "Currency",
+   "label": "Prv Balance",
+   "precision": "2"
+  },
+  {
+   "columns": 1,
+   "fieldname": "cashpaid",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Cashpaid",
+   "precision": "2"
+  },
+  {
+   "columns": 1,
+   "fieldname": "bankpaid",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Bankpaid",
+   "precision": "2"
+  },
+  {
+   "columns": 2,
+   "fieldname": "remaining_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Remaining Balance",
+   "precision": "2"
+  },
+  {
+   "columns": 2,
+   "fieldname": "total_payment",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Payment",
+   "precision": "2"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Labour Payment Details",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-03-28 22:02:53.499018",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "Labour Payment Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
