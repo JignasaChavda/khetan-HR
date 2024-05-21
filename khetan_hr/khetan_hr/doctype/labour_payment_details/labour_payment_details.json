@@ -15,11 +15,15 @@
   "employee_type",
   "total_hours",
   "daily_rate",
+  "standard_shift_hours",
   "payment",
-  "column_break_p9pqp",
   "advance",
+  "custom_advance_form",
+  "column_break_p9pqp",
   "canteen_deduction",
+  "custom_canteen_form",
   "fine",
+  "custom_fine_form",
   "prv_balance",
   "cashpaid",
   "bankpaid",
@@ -152,12 +156,33 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "custom_advance_form",
+   "fieldtype": "Data",
+   "label": "Advance Form"
+  },
+  {
+   "fieldname": "custom_canteen_form",
+   "fieldtype": "Data",
+   "label": "Canteen Form"
+  },
+  {
+   "fieldname": "custom_fine_form",
+   "fieldtype": "Data",
+   "label": "Fine Form"
+  },
+  {
+   "fieldname": "standard_shift_hours",
+   "fieldtype": "Float",
+   "label": "Standard Shift Hours",
+   "precision": "1"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-03-28 22:02:53.499018",
+ "modified": "2024-05-21 06:47:17.118994",
  "modified_by": "Administrator",
  "module": "Khetan HR",
  "name": "Labour Payment Details",

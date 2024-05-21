@@ -1,5 +1,6 @@
 [
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -11,6 +12,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -22,6 +24,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -33,6 +36,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Card Attendance",
@@ -44,6 +48,7 @@
   "view": "List"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Structure",
@@ -55,6 +60,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -66,6 +72,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Structure",
@@ -77,6 +84,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Labour Payment Upload",
@@ -88,6 +96,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
@@ -104,13 +113,14 @@
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2024-04-02 10:17:57.701788",
+  "modified": "2024-05-20 23:06:26.241264",
   "module": "Khetan HR",
   "name": "Show plant name as per company",
-  "script": "function generateNewId(nm, count) {\n    var leftSuffix = '-Left';\n\n    // Check if nm already contains '-Left'\n    if (!nm.endsWith(leftSuffix)) {\n        nm += leftSuffix;\n    }\n\n    var newId = nm + count;\n\n    return frappe.db.exists('Employee', newId).then(function(result) {\n        if (result) {\n            // If ID exists, increment count and try again\n            return generateNewId(nm, count + 1);\n        } else {\n            // If ID doesn't exist, return the unique ID\n            return newId;\n        }\n    });\n}\n\n\n\nfrappe.ui.form.on('Employee', {\n    refresh: function(frm) {\n        var company = frm.doc.company;\n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n            \n            });\n        \n    },\n\n    company: function(frm){\n        var company = frm.doc.company;\n        \n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n                frm.refresh_field('plant');\n            });\n        \n        \n\n    },\n    after_save: function(frm){\n        var emp = frm.doc.employee;\n        var nm = frm.doc.name;\n        var status = frm.doc.status;\n        \n        frappe.db.set_value('Employee',frm.doc.name,'attendance_device_id', emp);\n        \n        if (status == \"Left\"){\n            var count = 1;\n            var new_id = generateNewId(nm,count);\n            \n            new_id.then(function(new_id){\n                console.log(new_id);\n    \n\n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                      \n                      frappe.warn(\n                      'Employee is Marked as Left',\n                      'Are you sure you want to redirect the page?',\n                      () => {\n                        window.location.href = \"/app/employee\";\n                      },\n                      'Continue',\n                      true // Sets dialog as minimizable\n                    );\n\n\n                    }\n                }\n            });\n            })\n            \n        }\n    }\n});\n",
+  "script": "function generateNewId(nm, count) {\n    var leftSuffix = '-Left';\n\n    // Check if nm already contains '-Left'\n    if (!nm.endsWith(leftSuffix)) {\n        nm += leftSuffix;\n    }\n\n    var newId = nm + count;\n\n    return frappe.db.exists('Employee', newId).then(function(result) {\n        if (result) {\n            // If ID exists, increment count and try again\n            return generateNewId(nm, count + 1);\n        } else {\n            // If ID doesn't exist, return the unique ID\n            return newId;\n        }\n    });\n}\n\n\n\nfrappe.ui.form.on('Employee', {\n    refresh: function(frm) {\n        var company = frm.doc.company;\n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n            \n            });\n        \n    },\n\n    company: function(frm){\n        var company = frm.doc.company;\n        \n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n                frm.refresh_field('plant');\n            });\n        \n        \n\n    },\n    after_save: function(frm){\n        var emp = frm.doc.employee;\n        var nm = frm.doc.name;\n        var status = frm.doc.status;\n        var rel_date = frm.doc.relieving_date;\n        \n        console.log(emp)\n        \n        \n        if(status == \"Active\" && rel_date===null){\n            frappe.db.set_value('Employee',emp,'attendance_device_id', emp);\n        }\n        else if(status == \"Active\" && rel_date!==null){\n            var new_active_id = emp.split('-')[0];\n            \n            \n            \n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_active_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                        \n                        \n                        frappe.db.set_value('Employee', new_active_id, 'attendance_device_id', new_active_id)\n                        .then(() => {\n                            // Once the first update is complete, update the 'relieving_date'\n                            return frappe.db.set_value('Employee', new_active_id, 'relieving_date', '');\n                        })\n                        .then(() => {\n                            // Once both updates are complete, set the route\n                            frappe.set_route(\"List\", \"Employee\");\n                        })\n                        \n                       \n                       \n                        \n                      \n                        \n\n                    }\n                }\n            });\n            \n        }\n        \n        else if (status == \"Left\"){\n            frappe.db.set_value('Employee',emp,'attendance_device_id', '');\n            var count = 1;\n            var new_id = generateNewId(nm,count);\n            \n\n            \n            \n            new_id.then(function(new_id){\n                console.log(new_id);\n    \n\n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                        \n                    \n                        frappe.set_route(\"List\",\"Employee\");\n                      \n                        \n\n                    }\n                }\n            });\n            })\n            \n        }\n    }\n});\n",
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -122,6 +132,7 @@
   "view": "Form"
  },
  {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -133,36 +144,39 @@
   "view": "Form"
  },
  {
-  "docstatus": 0,
-  "doctype": "Client Script",
-  "dt": "Additional Salary",
-  "enabled": 1,
-  "modified": "2024-03-27 23:41:15.793573",
-  "module": "Khetan HR",
-  "name": "Set Salary Component based on type",
-  "script": "frappe.ui.form.on('Additional Salary', {\n\tcustom_type:function(frm) {\n\t\tvar type = frm.doc.custom_type;\n\t\t\n\t\tif(type=='Advance'){\n\t\t    \n\t\t    frappe.db.get_list('Salary Component', {\n                fields: ['name'], \n                filters: { \n                    'type':'Deduction',\n                    'component_type': 'Advance'\n                }\n            }).then(function(records) {\n                var com_nm = records[0].name;\n               \n                frm.set_value('salary_component',com_nm);\n            });\n\t\t}\n\t\telse if(type=='Penalty'){\n\t\t    frappe.db.get_list('Salary Component', {\n                fields: ['name'], \n                filters: { \n                    'type':'Deduction',\n                    'component_type': 'Penalty'\n                }\n            }).then(function(records) {\n                var com_nm = records[0].name;\n               \n                frm.set_value('salary_component',com_nm);\n            });\n\t\t}\n\t\telse if(type=='Canteen Deduction'){\n\t\t    frappe.db.get_list('Salary Component', {\n                fields: ['name'], \n                filters: { \n                    'type':'Deduction',\n                    'component_type': 'Canteen Deduction'\n                }\n            }).then(function(records) {\n                var com_nm = records[0].name;\n               \n                frm.set_value('salary_component',com_nm);\n            });\n\t\t}\n\t},\n\tcustom_coupan_qty:function(frm){\n\t    var coupan_qty = frm.doc.custom_coupan_qty\n\t    var coupan_rate = frm.doc.custom_rate_per_coupan\n\t    \n\t    if(coupan_qty && coupan_rate){\n\t        var can_ded = coupan_qty*coupan_rate\n\t        \n\t        frm.set_value('amount', can_ded);\n\t    }\n\t}\n})",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
-  "dt": "Advance Payment",
-  "enabled": 1,
-  "modified": "2024-03-28 00:04:58.065264",
-  "module": "Khetan HR",
-  "name": "Set Installment Month in Advance Payment  SU1",
-  "script": "frappe.ui.form.on('Advance Payment', {\n\tadvance_amount:function(frm) {\n\t    \n\t    var adv_amount = frm.doc.advance_amount;\n\t\tvar install_amount = frm.doc.installment_amount;\n\t\t\n\t\tif (adv_amount && install_amount){\n\t\t    \n\t\t    var install_month = adv_amount/install_amount;\n    \t\tconsole.log(adv_amount)\n    \t\t\n    \t\tfrm.set_value('installment_months', install_month);\n    \t\tfrm.refresh_field('installment_months');\n\t\t    \n\t\t}\n\t\t\n\t},\n\tinstallment_amount:function(frm) {\n\t    \n\t    var adv_amount = frm.doc.advance_amount;\n\t\tvar install_amount = frm.doc.installment_amount;\n\t\t\n\t\tif (adv_amount && install_amount){\n\t\t    \n\t\t    var install_month = adv_amount/install_amount;\n    \t\tconsole.log(adv_amount)\n    \t\t\n    \t\tfrm.set_value('installment_months', install_month);\n    \t\tfrm.refresh_field('installment_months');\n\t\t    \n\t\t}\n\t\t\n\t},\n\tinstallment_months:function(frm) {\n\t    \n\t    var adv_amount = frm.doc.advance_amount;\n\t\tvar install_month = frm.doc.installment_months;\n\t\t\n\t\tif (adv_amount && install_month){\n\t\t    \n\t\t    var install_amount = adv_amount/install_month;\n    \t\tconsole.log(install_amount)\n    \t\t\n    \t\tfrm.set_value('installment_amount', install_amount);\n    \t\tfrm.refresh_field('installment_amount');\n\t\t    \n\t\t}\n\t\t\n\t}\n})",
-  "view": "Form"
- },
- {
+  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Labour Salary Payment",
   "enabled": 1,
-  "modified": "2024-03-29 16:56:34.398331",
+  "modified": "2024-05-21 06:49:29.914879",
   "module": "Khetan HR",
   "name": "Labour Salary Payment SU1",
-  "script": "frappe.ui.form.on('Labour Salary Payment', {\n\n    from_date: function(frm) {\n        \n        var from_date = frm.doc.from_date;\n        \n        var date = new Date(from_date);\n        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);\n        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);\n       \n        frm.set_value('to_date', lastDay);\n        frm.refresh_field('to_date');\n    \n    },\n    get_data:function(frm){\n        \n        var from_date = frm.doc.from_date;\n        var to_date = frm.doc.to_date;\n        var emp_type = frm.doc.employee_type;\n        var depart = frm.doc.department;\n        \n        if (from_date==null || to_date==null){\n            frappe.throw('Please select date')\n        }\n        else{\n            \n    \n                \n                frappe.call({\n                method: \"fetch_labour_salary\",\n                args: {\n                    'employee_type':emp_type,\n                    'department':depart,\n                    freeze: true,\n                    freeze_message: \"Please wait ..\"\n                },\n                callback: function(r) {\n                    var res = r.message;\n                    \n                    frappe.msgprint(res)\n                    \n                    // res.forEach(function(message) {\n                    //     frappe.msgprint(message);\n                    // });\n                   \n                }\n                });\n                \n            \n            \n        }\n        \n    }\n});\n",
+  "script": "frappe.ui.form.on('Labour Salary Payment', {\n    \n    refresh:function(frm){\n        \n        frappe.db.get_list('Company', {\n                fields: ['name'], \n                filters: { \n                    'select_unit_': 'Unit 1'\n                }\n            }).then(function(records) {\n                var com_nm = records[0].name;\n  \n                frm.set_value('company',com_nm);\n                frm.refresh_field('company');\n            });\n    },\n\n    from_date: function(frm) {\n        \n        var from_date = frm.doc.from_date;\n        \n        var date = new Date(from_date);\n        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);\n        var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);\n        \n       \n        frm.set_value('to_date', lastDay);\n        frm.refresh_field('to_date');\n    \n    },\n    get_data:function(frm){\n        \n        var name = frm.doc.name;\n        var from_date = frm.doc.from_date;\n        var to_date = frm.doc.to_date;\n        var emp_type = frm.doc.employee_type;\n        var depart = frm.doc.department;\n        var company = frm.doc.company;\n        \n        if (from_date==null || to_date==null){\n            frappe.throw('Please select date')\n        }\n        else{\n           \n            frappe.call({\n                method: \"fetch_labour_salary\",\n                args: {\n                    \n                    'name':name,\n                    \"from_date\": from_date,\n                    \"to_date\": to_date,\n                    'employee_type':emp_type,\n                    'department':depart,\n                    'company': company,\n                    freeze: true,\n                    freeze_message: \"Please wait ..\"\n                },\n                callback: function(r) {\n                    var res = r.message;\n                    console.log(res)\n                    \n                    var empIds = [];\n                    for (var key in res) {\n                        if (res.hasOwnProperty(key)) {\n                          \n                            var employee = res[key];\n                            \n                          \n                            empIds.push(key);\n                            \n                            if (frm.doc.payment_details) {\n                                frm.doc.payment_details.forEach(function(row) {\n                                    if (row.employee == key) {\n                                        pass\n                                    }\n                                    \n                                });\n                            }\n                            frm.add_child(\"payment_details\", {\n                                        \"employee\": key,\n                                        \"employee_name\": employee.employee_name,\n                                        \"designation\": employee.designation,\n                                        \"department\": employee.department,\n                                        \"employee_type\": employee.employee_type,\n                                        \"daily_rate\": employee.daily_rate,\n                                        \"standard_shift_hours\": employee.standard_shift_hours,\n                                        \"total_hours\": employee.total_hours,\n                                        \"payment\": employee.total_payment,\n                                        \"advance\": employee.total_advance,\n                                        \"custom_advance_form\": employee.advance_names,\n                                        \"canteen_deduction\": employee.total_canteen,\n                                        \"custom_canteen_form\": employee.canteen_names,\n                                        \"fine\": employee.total_penalty,\n                                        \"custom_fine_form\": employee.penalty_names,\n                                        \"prv_balance\": employee.prev_bal,\n                                        \"total_payment\": employee.net_pay\n       \n                                       \n                            });\n                            \n                            \n                            \n                            \n                        }\n                    }\n                    frm.refresh_field(\"payment_details\");\n                    frm.save();\n                \n               \n                   \n                }\n            });\n            \n            \n        }\n        \n        \n        \n        \n    }\n});\n",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Additional Payment",
+  "enabled": 1,
+  "modified": "2024-05-20 20:37:57.740356",
+  "module": "Khetan HR",
+  "name": "Coupan Rate and Installment Month in Additional Payment",
+  "script": "frappe.ui.form.on('Additional Payment', {\n\ttype:function(frm) {\n\t\tvar type = frm.doc.type;\n\t\tvar adv_type = frm.doc.advance_type;\n\t\t\n\t\tif(type=='Canteen Deduction'){\n\t\t    \n\t\t    frappe.db.get_list('Salary Component', {\n                fields: ['custom_rate_per_coupan'], \n                filters: { \n                    'type':'Deduction',\n                    'component_type': 'Canteen Deduction'\n                }\n            }).then(function(records) {\n                console.log(records)\n                var coupan_rate = records[0].custom_rate_per_coupan;\n               \n                frm.set_value('rate_per_coupan',coupan_rate);\n                frm.refresh_field('rate_per_coupan');\n            });\n\t\t}\n\t},\n\tcoupan_qty:function(frm){\n\t    var coupan_qty = frm.doc.coupan_qty\n\t    var coupan_rate = frm.doc.rate_per_coupan\n\t    \n\t    if(coupan_qty && coupan_rate){\n\t        var can_ded = coupan_qty*coupan_rate\n\t        \n\t        frm.set_value('amount', can_ded);\n\t    }\n\t},\n\tadvance_amount:function(frm) {\n    \n        var adv_amount = frm.doc.advance_amount;\n    \tvar install_amount = frm.doc.installment_amount;\n    \t\n    \tif (adv_amount && install_amount){\n    \t    \n    \t    var install_month = adv_amount/install_amount;\n    \t\tconsole.log(adv_amount)\n    \t\t\n    \t\tfrm.set_value('installment_months', install_month);\n    \t\tfrm.refresh_field('installment_months');\n    \t    \n    \t}\n\t\t\n\t},\n\tinstallment_amount:function(frm) {\n\t    \n\t    var adv_amount = frm.doc.advance_amount;\n\t\tvar install_amount = frm.doc.installment_amount;\n\t\t\n\t\tif (adv_amount && install_amount){\n\t\t    \n\t\t    var install_month = adv_amount/install_amount;\n    \t\tconsole.log(adv_amount)\n    \t\t\n    \t\tfrm.set_value('installment_months', install_month);\n    \t\tfrm.refresh_field('installment_months');\n\t\t    \n\t\t}\n\t\t\n\t},\n\tinstallment_months:function(frm) {\n\t    \n\t    var adv_amount = frm.doc.advance_amount;\n\t\tvar install_month = frm.doc.installment_months;\n\t\t\n\t\tif (adv_amount && install_month){\n\t\t    \n\t\t    var install_amount = adv_amount/install_month;\n    \t\tconsole.log(install_amount)\n    \t\t\n    \t\tfrm.set_value('installment_amount', install_amount);\n    \t\tfrm.refresh_field('installment_amount');\n\t\t    \n\t\t}\n\t\t\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Salary Slip",
+  "enabled": 1,
+  "modified": "2024-05-20 20:38:27.395829",
+  "module": "Khetan HR",
+  "name": "Get Deleted Advance record from salary slip Child table",
+  "script": "frappe.ui.form.on('Salary Detail', {\n    amount: function(frm, cdt, cdn) {\n        var doc = frappe.get_doc(cdt, cdn);\n        var modi_row_name = doc.name;\n        var mod_sal_com = doc.salary_component;\n        var mod_com_type = doc.custom_type;\n        var mod_ded_com_type = doc.custom_deduction_component_type;\n        var mod_addi_salary = doc.additional_salary;\n        var mod_com_amount = doc.amount;\n    \n    \n        // Add record in 'Deleted Record' table when 'Advance' value is changes in 'Deductions' table\n        if (mod_ded_com_type == 'Advance' && mod_addi_salary != null) {\n            var rows = frm.doc.custom_deleted_components;\n    \n            \n            // Check if 'Deleted Record' table has no record then add a record\n            if (rows.length == 0) {\n                frappe.db.get_list('Salary Detail', {\n                    fields: ['amount'],\n                    filters: {\n                        'name': modi_row_name\n                    }\n                }).then(function(records) {\n                    var old_value = records[0].amount;\n    \n                    if (old_value !== mod_com_amount) {\n                        var difference = old_value - mod_com_amount;\n    \n                        var row = frm.add_child('custom_deleted_components');\n                        row.salary_component = mod_sal_com;\n                        row.custom_type = mod_com_type;\n                        row.custom_deduction_component_type = mod_ded_com_type;\n                        row.additional_salary = mod_addi_salary;\n                        row.amount = difference;\n                        row.custom_marked_for_deletion = 1;\n                        refresh_field('custom_deleted_components');\n                    }\n                });\n    \n            } else {\n                for (var i = 0; i < rows.length; i++) {\n                    var row = rows[i];\n                    var row_ded_com_type = row.custom_deduction_component_type;\n                    var row_marked_for_deletion = row.custom_marked_for_deletion;\n                    \n                    // Check if 'Deleted Record' table has record, and amount is same as old amount then delete the record from 'Deleted Record' table otherwise amount is changed in 'Deleted Record'\n                    if (row_ded_com_type == mod_ded_com_type && row_marked_for_deletion == 1) {\n    \n                        frappe.db.get_list('Salary Detail', {\n                            fields: ['amount'],\n                            filters: {\n                                'name': modi_row_name\n                            }\n                        }).then(function(records) {\n                            var old_value = records[0].amount;\n    \n                            if (old_value === mod_com_amount) {\n                                frm.set_value('custom_deleted_components', []);\n                            }\n                            else{\n                                \n                                var difference = old_value - mod_com_amount;\n                                row.amount = difference;\n                                refresh_field('custom_deleted_components');\n                                \n                            }\n                        });\n                    }\n                }\n            }\n        }\n    },\n\n    // Add record into 'Deleted Records' table when 'Advance' is deducted from 'Deduction' table\n    before_deductions_remove: function(frm, cdt, cdn) {\n        var deleted_row = frappe.get_doc(cdt, cdn);\n        \n        var del_sal_com = deleted_row.salary_component;\n        var del_com_type = deleted_row.custom_type;\n        var ded_com_type = deleted_row.custom_deduction_component_type;\n        var ded_addi_salary = deleted_row.additional_salary;\n        var del_com_amount = deleted_row.amount;\n        \n        if (ded_com_type=='Advance' && ded_addi_salary!=null){\n            \n            var row = frm.add_child('custom_deleted_components');\n            row.salary_component = del_sal_com;\n            row.custom_type = del_com_type;\n            row.custom_deduction_component_type = ded_com_type;\n            row.additional_salary = ded_addi_salary;\n            row.amount = del_com_amount;\n        \n        }\n        \n        \n    }\n});\n",
   "view": "Form"
  }
 ]

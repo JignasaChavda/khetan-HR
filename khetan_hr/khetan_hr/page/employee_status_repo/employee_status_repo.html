@@ -1,0 +1,61 @@
+<script src="https://unpkg.com/xlsx@0.16.3/dist/xlsx.full.min.js"></script>
+<table id="1">
+    <tr>
+        <th>No.</th>
+        <th>Photo</th>
+        <th style="width: 10%;">ID</th>
+        <th style="width: 15%;">Full Name</th>
+        <th style="width: 10%;">Office or Plant</th>
+        <th>Department</th>
+        <th>Plant</th>
+        <th>Status</th>
+        <th>Date of Resign</th>
+    </tr>
+
+
+    {% let counter = 1 %}
+    {% $.each(empdata, (idx, row) => { %}
+        <tr>
+            <td>{{counter }}</td>
+
+            <td>{% if row.photo_url %}
+                <img src="{{ row.photo_url }}" alt="Employee Photo" style="width: 150px; height: 150px; display: block; margin: 0 auto;">
+            {% else %}
+                No photo available
+            {% endif %}
+            </td>
+
+            <td >{{ row.ID }}</td>
+            <td >{{ row.full_name }}</td>
+            <td >{{ row.office_or_plant}}</td>
+            <td >{{ row.department }}</td>
+            <td >{{ row.plant}}</td>
+            
+            <td >{{ row.status }}</td>
+        
+            <td >{{ row.relieving_date}}</td>
+
+        </tr>
+        {% counter = counter + 1 %}
+	{% }) %}
+
+
+</table>
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        /* table-layout: fixed; */
+    }
+
+    th,
+    td {
+        border: 1px solid;
+        text-align: left;
+        padding: 8px;
+    }
+
+   
+</style>

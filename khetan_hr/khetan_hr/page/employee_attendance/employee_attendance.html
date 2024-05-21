@@ -10,9 +10,6 @@
     font-size: 8px;
   }
 
-
-
-
   table {
     width: 100%;
     border-collapse: collapse;
@@ -20,46 +17,117 @@
     margin-bottom: 20px; /* Add margin below the table */
   }
 
-
-
-
-  th{
+  th, td {
     border: 1px solid #000000;
-    padding: auto;
-    text-align: left;
+    padding: 4px; /* Adjust padding as needed */
     font-size: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
     white-space: nowrap; /* Prevent text wrapping */
   }
-  td{
-    border: 1px solid #000000;
-    padding: auto;
-    font-size: 10px;
-    text-align: left;
-     /* Prevent text wrapping */
+
+  td {
+    white-space: nowrap; /* Prevent text wrapping */
   }
+
   h3 {
     text-align: center;
     margin-top: 5px;
   }
 
+  /* Set specific widths for each column */
+  col:nth-child(1) { width: 5%; }
+  col:nth-child(2) { width: 7%; }
+  col:nth-child(3) { width: 15%; }
+  col:nth-child(4) { width: 5%; }
+  col:nth-child(5) { width: 7%; }
+  col:nth-child(6) { width: 7%; }
+  col:nth-child(7) { width: 7%; }
+  col:nth-child(8) { width: 7%; }
+  col:nth-child(9) { width: 7%; }
+  col:nth-child(10) { width: 5%; }
+  col:nth-child(11) { width: 7%; }
+  col:nth-child(12) { width: 7%; }
+  col:nth-child(13) { width: 7%; }
+  col:nth-child(14) { width: 7%; }
+  col:nth-child(15) { width: 10%; }
+  col:nth-child(16) { width: 10%; }
 
+  @media print {
+    body {
+      margin: 10px !important; /* Adjust the margin for print */
+      font-size: 12px !important; /* Adjust the font size for print */
+    }
 
+    th, td {
+      font-size: 10px !important; /* Adjust font size for printing */
+      padding: 4px !important; /* Ensure padding is set for print */
+    }
 
-  th {
-    background-color: #f2f2f2;
+    th {
+      white-space: normal !important; /* Allow text wrapping in th during print */
+    }
+
+    /* Ensure column widths are applied */
+    table {
+      table-layout: fixed !important;
+    }
+
+    td:nth-child(3) {
+      white-space: normal !important;
+    }
+
+    td:nth-child(15) {
+      white-space: normal !important;
+    }
+
+    col:nth-child(1) { width: 3% !important; }
+    col:nth-child(2) { width: 7% !important; }
+    col:nth-child(3) { width: 17% !important; }
+    col:nth-child(4) { width: 4% !important; }
+    col:nth-child(5) { width: 7% !important; }
+    col:nth-child(6) { width: 7% !important; }
+    col:nth-child(7) { width: 7% !important; }
+    col:nth-child(8) { width: 7% !important; }
+    col:nth-child(9) { width: 5% !important; }
+    col:nth-child(10) { width: 5% !important; }
+    col:nth-child(11) { width: 5% !important; }
+    col:nth-child(12) { width: 4% !important; }
+    col:nth-child(13) { width: 5% !important; }
+    col:nth-child(14) { width: 7% !important; }
+    col:nth-child(15) { width: 7% !important; }
+    col:nth-child(16) { width: 14% !important; }
   }
 </style>
 </head>
 <body>
 
-
-
-
 <h4 style="font-size:20px;">Department: {{ department }}</h4>
 <table>
+  <colgroup>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+  </colgroup>
   <thead>
     <tr>
-      <th>SNo</th>
+      <th>Sr No</th>
       <th>E. Code</th>
       <th>Name</th>
       <th>Shift</th>
@@ -70,12 +138,11 @@
       <th>Work Dur.</th>
       <th>OT</th>
       <th>Tot. Dur.</th>
-      <th>LateBy</th>
-      <th>EarlyGoingBy</th>
+      <th>Late By</th>
+      <th>Early By</th>
       <th>Status</th>
       <th>Punch Records</th>
-      <th>Employe Type </th>
-  
+      <th>Employe Type</th>
     </tr>
   </thead>
   <tbody>
@@ -97,7 +164,6 @@
       <td>{{ department.status }}</td>
       <td>{{department.custom_remarks}}</td>
       <td>{{department.custom_employee_type}}</td>
-   
     </tr>
     {% endfor %}
   </tbody>

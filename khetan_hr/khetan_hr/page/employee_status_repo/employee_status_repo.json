@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2024-05-20 21:00:19.406309",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-05-20 21:00:19.406309",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "employee_status_repo",
+ "owner": "Administrator",
+ "page_name": "employee_status_repo",
+ "roles": [
+  {
+   "role": "All"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Employee Status Report"
+}

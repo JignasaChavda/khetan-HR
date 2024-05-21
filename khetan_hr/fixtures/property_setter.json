@@ -1,6 +1,5 @@
 [
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Shift Assignment",
   "docstatus": 0,
@@ -17,7 +16,6 @@
   "value": "[\"employee\", \"employee_name\", \"shift_type\", \"custom_type\", \"status\", \"column_break_3\", \"company\", \"start_date\", \"end_date\", \"shift_request\", \"department\", \"employee_type\", \"amended_from\"]"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Shift Type",
   "docstatus": 0,
@@ -34,7 +32,6 @@
   "value": "[\"start_time\", \"end_time\", \"shift_hours\", \"column_break_3\", \"holiday_list\", \"company\", \"custom_type\", \"company_unit\", \"night\", \"day\", \"enable_auto_attendance\", \"auto_attendance_settings_section\", \"determine_check_in_and_check_out\", \"working_hours_calculation_based_on\", \"begin_check_in_before_shift_start_time\", \"allow_check_out_after_shift_end_time\", \"mark_auto_attendance_on_holidays\", \"column_break_10\", \"working_hours_threshold_for_half_day\", \"working_hours_threshold_for_absent\", \"process_attendance_after\", \"last_sync_of_checkin\", \"grace_period_settings_auto_attendance_section\", \"enable_entry_grace_period\", \"late_entry_grace_period\", \"column_break_18\", \"enable_exit_grace_period\", \"early_exit_grace_period\"]"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -51,7 +48,6 @@
   "value": "1"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee Checkin",
   "docstatus": 0,
@@ -68,7 +64,6 @@
   "value": "[\"employee\", \"employee_name\", \"log_type\", \"shift\", \"company\", \"company_unit\", \"column_break_4\", \"time\", \"device_id\", \"skip_auto_attendance\", \"attendance\", \"shift_start\", \"shift_end\", \"shift_actual_start\", \"shift_actual_end\", \"hour\", \"minute\", \"date\"]"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -85,7 +80,6 @@
   "value": "1"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Shift Type",
   "docstatus": 0,
@@ -102,7 +96,6 @@
   "value": "1"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -127,16 +120,15 @@
   "doctype_or_field": "DocField",
   "field_name": "component_type",
   "is_system_generated": 0,
-  "modified": "2024-03-27 22:03:14.632395",
+  "modified": "2024-05-21 08:36:17.064469",
   "module": "Khetan HR",
   "name": "Salary Component-component_type-options",
   "property": "options",
   "property_type": "Select",
   "row_name": null,
-  "value": "\nAdvance\nPenalty\nCanteen Deduction\nProvident Fund\nAdditional Provident Fund\nProvident Fund Loan\nProfessional Tax"
+  "value": "\nAdvance\nPenalty\nCanteen Deduction\nProvident Fund\nAdditional Provident Fund\nProvident Fund Loan\nProfessional Tax\nOther Deduction"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Component",
   "docstatus": 0,
@@ -153,7 +145,6 @@
   "value": "eval:doc.type=='Deduction'"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -170,7 +161,6 @@
   "value": "Set by user"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -187,7 +177,6 @@
   "value": "prompt"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -204,7 +193,6 @@
   "value": "1"
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -221,7 +209,6 @@
   "value": "eval:doc.company==\"Khetan Udyog\""
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
   "default_value": null,
   "doc_type": "Employee",
   "docstatus": 0,
@@ -238,24 +225,6 @@
   "value": "eval:doc.company==\"Khetan Udyog\""
  },
  {
-  "_liked_by": "[\"jignasha@sanskartechnolab.com\", \"Administrator\"]",
-  "default_value": null,
-  "doc_type": "Employee",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocType",
-  "field_name": null,
-  "is_system_generated": 0,
-  "modified": "2024-03-27 21:42:59.554714",
-  "module": "Khetan HR",
-  "name": "Employee-main-field_order",
-  "property": "field_order",
-  "property_type": "Data",
-  "row_name": null,
-  "value": "[\"basic_details_tab\", \"basic_information\", \"employee\", \"custom_office_or_plant\", \"naming_series\", \"first_name\", \"middle_name\", \"last_name\", \"employee_name\", \"column_break_9\", \"gender\", \"date_of_birth\", \"custom_referring_person\", \"custom_referring_person_name\", \"custom_referring_person_contact\", \"salutation\", \"column_break1\", \"aadhaar_number\", \"date_of_joining\", \"image\", \"status\", \"erpnext_user\", \"user_id\", \"create_user\", \"create_user_permission\", \"company_details_section\", \"company\", \"department\", \"employment_type\", \"employee_number\", \"column_break_25\", \"designation\", \"plant\", \"reports_to\", \"column_break_18\", \"payment_frequency\", \"employee_type\", \"branch\", \"grade\", \"employment_details\", \"job_applicant\", \"scheduled_confirmation_date\", \"column_break_32\", \"final_confirmation_date\", \"contract_end_date\", \"col_break_22\", \"notice_number_of_days\", \"date_of_retirement\", \"contact_details\", \"cell_number\", \"column_break_40\", \"personal_email\", \"company_email\", \"column_break4\", \"prefered_contact_email\", \"prefered_email\", \"unsubscribed\", \"address_section\", \"current_address\", \"current_accommodation_type\", \"column_break_46\", \"permanent_address\", \"permanent_accommodation_type\", \"emergency_contact_details\", \"person_to_be_contacted\", \"column_break_55\", \"emergency_phone_number\", \"column_break_19\", \"relation\", \"attendance_and_leave_details\", \"attendance_device_id\", \"column_break_44\", \"holiday_list\", \"default_shift\", \"approvers_section\", \"expense_approver\", \"leave_approver\", \"column_break_45\", \"shift_request_approver\", \"salary_information\", \"daily_rate\", \"ctc\", \"salary_currency\", \"salary_mode\", \"salary_cb\", \"payroll_cost_center\", \"pan_number\", \"provident_fund_account\", \"esi_account\", \"uan_number\", \"bank_details_section\", \"bank_name\", \"column_break_heye\", \"bank_ac_no\", \"bank_cb\", \"ifsc_code\", \"micr_code\", \"iban\", \"personal_details\", \"marital_status\", \"family_background\", \"column_break6\", \"blood_group\", \"health_details\", \"health_insurance_section\", \"health_insurance_provider\", \"health_insurance_no\", \"passport_details_section\", \"passport_number\", \"valid_upto\", \"column_break_73\", \"date_of_issue\", \"place_of_issue\", \"profile_tab\", \"bio\", \"educational_qualification\", \"education\", \"previous_work_experience\", \"external_work_history\", \"history_in_company\", \"internal_work_history\", \"exit\", \"resignation_letter_date\", \"relieving_date\", \"exit_interview_details\", \"held_on\", \"new_workplace\", \"column_break_99\", \"leave_encashed\", \"encashment_date\", \"feedback_section\", \"reason_for_leaving\", \"column_break_104\", \"feedback\", \"lft\", \"rgt\", \"old_parent\", \"connections_tab\"]"
- },
- {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Salary Component",
   "docstatus": 0,
@@ -272,24 +241,6 @@
   "value": "[\"overview_tab\", \"salary_component\", \"salary_component_abbr\", \"type\", \"description\", \"custom_earning_component_type\", \"component_type\", \"custom_rate_per_coupan\", \"column_break_4\", \"depends_on_payment_days\", \"is_tax_applicable\", \"deduct_full_tax_on_selected_payroll_date\", \"variable_based_on_taxable_salary\", \"is_income_tax_component\", \"exempted_from_income_tax\", \"round_to_the_nearest_integer\", \"statistical_component\", \"do_not_include_in_total\", \"remove_if_zero_valued\", \"disabled\", \"section_break_5\", \"accounts\", \"configure_component_tab\", \"condition_and_formula\", \"condition\", \"amount\", \"amount_based_on_formula\", \"formula\", \"column_break_28\", \"help\", \"flexible_benefits_tab\", \"is_flexible_benefit\", \"max_benefit_amount\", \"column_break_9\", \"pay_against_benefit_claim\", \"only_tax_impact\", \"create_separate_payment_entry_against_benefit_claim\"]"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
-  "default_value": null,
-  "doc_type": "Salary Detail",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocType",
-  "field_name": null,
-  "is_system_generated": 0,
-  "modified": "2024-03-27 22:17:50.638237",
-  "module": "Khetan HR",
-  "name": "Salary Detail-main-field_order",
-  "property": "field_order",
-  "property_type": "Data",
-  "row_name": null,
-  "value": "[\"salary_component\", \"custom_type\", null, null, \"abbr\", \"column_break_3\", \"amount\", \"year_to_date\", \"section_break_5\", \"additional_salary\", \"is_recurring_additional_salary\", \"statistical_component\", \"depends_on_payment_days\", \"exempted_from_income_tax\", \"is_tax_applicable\", \"column_break_11\", \"is_flexible_benefit\", \"variable_based_on_taxable_salary\", \"do_not_include_in_total\", \"deduct_full_tax_on_selected_payroll_date\", \"section_break_2\", \"condition\", \"column_break_18\", \"amount_based_on_formula\", \"formula\", \"section_break_19\", \"default_amount\", \"additional_amount\", \"column_break_24\", \"tax_on_flexible_benefit\", \"tax_on_additional_salary\"]"
- },
- {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Attendance",
   "docstatus": 0,
@@ -306,7 +257,6 @@
   "value": "[\"attendance_details\", \"naming_series\", \"employee\", \"employee_name\", \"working_hours\", \"new_hours\", \"overtime\", \"custom_total_hours\", \"status\", \"leave_type\", \"leave_application\", \"column_break0\", \"attendance_date\", \"company\", \"custom_company_unit\", \"department\", \"custom_employee_type\", \"attendance_request\", \"details_section\", \"shift\", \"check_in_time\", \"check_out_time\", \"custom_late_entry\", \"custom_early_exit\", \"in_time\", \"out_time\", \"column_break_18\", \"custom_remarks\", \"custom_employee_checkin\", \"custom_employee_checkout\", \"late_entry\", \"early_exit\", \"amended_from\"]"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "default_value": null,
   "doc_type": "Additional Salary",
   "docstatus": 0,
@@ -314,12 +264,61 @@
   "doctype_or_field": "DocType",
   "field_name": null,
   "is_system_generated": 0,
-  "modified": "2024-03-28 00:11:09.482744",
+  "modified": "2024-05-21 08:35:23.982169",
   "module": "Khetan HR",
   "name": "Additional Salary-main-field_order",
   "property": "field_order",
   "property_type": "Data",
   "row_name": null,
-  "value": "[\"naming_series\", \"employee\", \"employee_name\", \"department\", \"custom_type\", \"custom_status\", \"column_break_5\", \"company\", \"aadhaar_number\", \"is_recurring\", \"disabled\", \"from_date\", \"to_date\", \"payroll_date\", \"amended_from\", \"salary_details_section\", \"salary_component\", \"type\", \"currency\", \"amount\", \"column_break_8\", \"custom_rate_per_coupan\", \"custom_coupan_qty\", \"custom_remarks\", \"deduct_full_tax_on_selected_payroll_date\", \"overwrite_salary_structure_amount\", \"properties_and_references_section\", \"custom_advance_payment\", \"ref_doctype\", \"ref_docname\"]"
+  "value": "[\"naming_series\", \"employee\", \"employee_name\", \"custom_employee_type\", \"department\", \"custom_status\", \"column_break_5\", \"custom_posting_date\", \"company\", \"aadhaar_number\", \"is_recurring\", \"disabled\", \"from_date\", \"to_date\", \"payroll_date\", \"amended_from\", \"salary_details_section\", \"salary_component\", \"type\", \"currency\", \"amount\", \"column_break_8\", \"deduct_full_tax_on_selected_payroll_date\", \"overwrite_salary_structure_amount\", \"properties_and_references_section\", \"custom_additional_payment\", \"custom_payment_type\", \"ref_doctype\", \"ref_docname\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Salary Detail",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2024-05-21 08:35:23.966180",
+  "module": "Khetan HR",
+  "name": "Salary Detail-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"salary_component\", \"custom_type\", \"custom_earning_component_type\", \"custom_deduction_component_type\", null, \"abbr\", \"column_break_3\", \"amount\", \"year_to_date\", \"section_break_5\", \"additional_salary\", \"is_recurring_additional_salary\", \"statistical_component\", \"depends_on_payment_days\", \"exempted_from_income_tax\", \"is_tax_applicable\", \"column_break_11\", \"is_flexible_benefit\", \"variable_based_on_taxable_salary\", \"do_not_include_in_total\", \"deduct_full_tax_on_selected_payroll_date\", \"section_break_2\", \"condition\", \"column_break_18\", \"amount_based_on_formula\", \"formula\", \"section_break_19\", \"default_amount\", \"additional_amount\", \"column_break_24\", \"tax_on_flexible_benefit\", \"tax_on_additional_salary\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Salary Slip",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2024-05-21 08:35:23.953654",
+  "module": "Khetan HR",
+  "name": "Salary Slip-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"employee_and_payroll_tab\", \"section_break_6\", \"employee\", \"employee_name\", \"department\", \"designation\", \"branch\", \"column_break_obdl\", \"posting_date\", \"letter_head\", \"column_break_18\", \"status\", \"company\", \"currency\", \"exchange_rate\", \"section_break_gsts\", \"payroll_frequency\", \"start_date\", \"end_date\", \"column_break_ptcc\", \"salary_structure\", \"payroll_entry\", \"mode_of_payment\", \"column_break_wyhp\", \"salary_slip_based_on_timesheet\", \"section_break_gerh\", \"deduct_tax_for_unclaimed_employee_benefits\", \"deduct_tax_for_unsubmitted_tax_exemption_proof\", \"payment_days_tab\", \"total_working_days\", \"unmarked_days\", \"leave_without_pay\", \"column_break_geio\", \"absent_days\", \"payment_days\", \"present_days\", \"help_section\", \"payment_days_calculation_help\", \"earnings_and_deductions_tab\", \"timesheets_section\", \"timesheets\", \"column_break_ghjr\", \"total_working_hours\", \"hour_rate\", \"base_hour_rate\", \"earning_deduction\", \"earnings\", \"column_break_k1jz\", \"deductions\", null, null, \"totals\", \"gross_pay\", \"base_gross_pay\", \"gross_year_to_date\", \"base_gross_year_to_date\", \"column_break_25\", \"total_deduction\", \"base_total_deduction\", \"loan_repayment\", \"loans\", \"section_break_43\", \"total_principal_amount\", \"total_interest_amount\", \"column_break_45\", \"total_loan_repayment\", \"net_pay_info\", \"net_pay\", \"base_net_pay\", \"rounded_total\", \"base_rounded_total\", \"column_break_dqnd\", \"year_to_date\", \"base_year_to_date\", \"month_to_date\", \"base_month_to_date\", \"section_break_55\", \"total_in_words\", \"column_break_69\", \"base_total_in_words\", \"income_tax_calculation_breakup_section\", \"ctc\", \"income_from_other_sources\", \"total_earnings\", \"column_break_0rsw\", \"non_taxable_earnings\", \"standard_tax_exemption_amount\", \"tax_exemption_declaration\", \"deductions_before_tax_calculation\", \"annual_taxable_amount\", \"column_break_35wb\", \"income_tax_deducted_till_date\", \"current_month_income_tax\", \"future_income_tax_deductions\", \"total_income_tax\", \"section_break_75\", \"journal_entry\", \"amended_from\", \"column_break_ieob\", \"bank_name\", \"bank_account_no\", \"leave_details_section\", \"leave_details\"]"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "default_value": null,
+  "doc_type": "Employee",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2024-05-21 08:35:23.931531",
+  "module": "Khetan HR",
+  "name": "Employee-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"basic_details_tab\", \"basic_information\", \"employee\", \"custom_office_or_plant\", \"naming_series\", \"first_name\", \"middle_name\", \"last_name\", \"employee_name\", \"column_break_9\", \"gender\", \"date_of_birth\", \"cell_number\", \"custom_referring_person\", \"custom_referring_person_name\", \"custom_referring_person_contact\", \"salutation\", \"column_break1\", \"aadhaar_number\", \"date_of_joining\", \"image\", \"status\", \"erpnext_user\", \"user_id\", \"create_user\", \"create_user_permission\", \"company_details_section\", \"company\", \"department\", \"employment_type\", \"employee_number\", \"column_break_25\", \"designation\", \"plant\", \"reports_to\", \"column_break_18\", \"payment_frequency\", \"employee_type\", \"branch\", \"grade\", \"employment_details\", \"job_applicant\", \"scheduled_confirmation_date\", \"column_break_32\", \"final_confirmation_date\", \"contract_end_date\", \"col_break_22\", \"notice_number_of_days\", \"date_of_retirement\", \"contact_details\", \"column_break_40\", \"personal_email\", \"company_email\", \"column_break4\", \"prefered_contact_email\", \"prefered_email\", \"unsubscribed\", \"address_section\", \"current_address\", \"current_accommodation_type\", \"column_break_46\", \"permanent_address\", \"permanent_accommodation_type\", \"emergency_contact_details\", \"person_to_be_contacted\", \"column_break_55\", \"emergency_phone_number\", \"column_break_19\", \"relation\", \"attendance_and_leave_details\", \"attendance_device_id\", \"column_break_44\", \"holiday_list\", \"default_shift\", \"approvers_section\", \"expense_approver\", \"leave_approver\", \"column_break_45\", \"shift_request_approver\", \"salary_information\", \"daily_rate\", \"custom_standard_shift_hours\", \"ctc\", \"salary_currency\", \"salary_mode\", \"salary_cb\", \"payroll_cost_center\", \"pan_number\", \"provident_fund_account\", \"esi_account\", \"uan_number\", \"bank_details_section\", \"bank_name\", \"column_break_heye\", \"bank_ac_no\", \"bank_cb\", \"ifsc_code\", \"micr_code\", \"iban\", \"personal_details\", \"marital_status\", \"family_background\", \"column_break6\", \"blood_group\", \"health_details\", \"health_insurance_section\", \"health_insurance_provider\", \"health_insurance_no\", \"passport_details_section\", \"passport_number\", \"valid_upto\", \"column_break_73\", \"date_of_issue\", \"place_of_issue\", \"profile_tab\", \"bio\", \"educational_qualification\", \"education\", \"previous_work_experience\", \"external_work_history\", \"history_in_company\", \"internal_work_history\", \"exit\", \"resignation_letter_date\", \"relieving_date\", \"exit_interview_details\", \"held_on\", \"new_workplace\", \"column_break_99\", \"leave_encashed\", \"encashment_date\", \"feedback_section\", \"reason_for_leaving\", \"column_break_104\", \"feedback\", \"lft\", \"rgt\", \"old_parent\", \"connections_tab\"]"
  }
 ]
