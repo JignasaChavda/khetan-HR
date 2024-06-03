@@ -4,13 +4,17 @@
  "docstatus": 0,
  "doctype": "Page",
  "idx": 0,
- "modified": "2024-02-29 11:53:48.869017",
+ "modified": "2024-06-03 13:04:51.407185",
  "modified_by": "Administrator",
  "module": "Khetan HR",
  "name": "employee-attendance",
  "owner": "Administrator",
  "page_name": "employee-attendance",
- "roles": [],
+ "roles": [
+  {
+   "role": "All"
+  }
+ ],
  "script": null,
  "standard": "Yes",
  "style": null,
