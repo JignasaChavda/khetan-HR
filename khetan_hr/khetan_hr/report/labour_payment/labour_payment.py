@@ -29,6 +29,8 @@ def execute(filters=None):
    month = filters.get("month", "")
    year = int(filters.get("year", 0))
 
+   status = filters.get("status")
+
    # Ensure the month and year are provided
    if not month or not year:
        frappe.msgprint("Please select both month and year.")
@@ -49,7 +51,7 @@ def execute(filters=None):
         filters={
             "from_date": ["<=", end_date], 
             "to_date": [">=", start_date],
-            "docstatus": 1
+            "docstatus": 1 if status == "Submitted" else 0
         },
         fields=['name']
    )
@@ -64,7 +66,7 @@ def execute(filters=None):
         
         for data in exists_pay_details:
             exists_emp = data.employee
-            print("\n\n\n\n", data.total_hours,"\n\n")
+            print("\n\n\n\n", data.net_payment,"\n\n")
 
             # Store payment details for matched employees
             employee_details[exists_emp] = {
@@ -78,7 +80,8 @@ def execute(filters=None):
                 "total_payment": data.total_payment,
                 "cashpaid": data.cashpaid,
                 "bankpaid": data.bankpaid,
-                "remaining_balance": data.remaining_balance
+                "remaining_balance": data.remaining_balance,
+                "net_payment": data.net_payment
             }
 
    # Group data by employee
@@ -122,17 +125,18 @@ def execute(filters=None):
 
    # Add columns for additional payment details
    additional_columns = [
-       {"label": "Daily Rate", "fieldname": "daily_rate", "fieldtype": "Currency", "width": 100},
-       {"label": "Total Hours", "fieldname": "total_hours", "fieldtype": "Float", "Precision": "2", "width": 100},
-       {"label": "Payment", "fieldname": "payment", "fieldtype": "Currency", "width": 100},
-       {"label": "Advance", "fieldname": "advance", "fieldtype": "Currency", "width": 100},
-       {"label": "Canteen Deduction", "fieldname": "canteen_deduction", "fieldtype": "Currency", "width": 100},
-       {"label": "Fine", "fieldname": "fine", "fieldtype": "Currency", "width": 100},
-       {"label": "Previous Balance", "fieldname": "prv_balance", "fieldtype": "Currency", "width": 100},
-       {"label": "Total Payment", "fieldname": "total_payment", "fieldtype": "Currency", "width": 100},
-       {"label": "Cash Paid", "fieldname": "cashpaid", "fieldtype": "Currency", "width": 100},
-       {"label": "Bank Paid", "fieldname": "bankpaid", "fieldtype": "Currency", "width": 100},
-       {"label": "Remaining Balance", "fieldname": "remaining_balance", "fieldtype": "Currency", "width": 100}
+       {"label": "Daily Rate", "fieldname": "daily_rate", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Total Hours", "fieldname": "total_hours", "fieldtype": "Float", "Precision": 2, "width": 100},
+       {"label": "Payment", "fieldname": "payment", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Advance", "fieldname": "advance", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Canteen Deduction", "fieldname": "canteen_deduction", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Fine", "fieldname": "fine", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Previous Balance", "fieldname": "prv_balance", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Total Payment", "fieldname": "total_payment", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Cash Paid", "fieldname": "cashpaid", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Bank Paid", "fieldname": "bankpaid", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Remaining Balance", "fieldname": "remaining_balance", "fieldtype": "Currency", "Precision": 2, "width": 100},
+       {"label": "Net Payment", "fieldname": "net_payment", "fieldtype": "Currency","Precision": 2, "width": 100}
    ]
 
    columns += additional_columns

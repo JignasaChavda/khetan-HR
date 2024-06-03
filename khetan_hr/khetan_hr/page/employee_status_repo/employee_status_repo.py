@@ -41,10 +41,11 @@ def employee_data(employee=None, from_date=None, to_date=None, employee_type=Non
         for photo in employee_photos:
             if employee_record["full_name"] == photo["employee_name"]:
                 employee_record["photo_url"] = photo["photo_url"]
+                print("\n\n\n", photo["photo_url"],"\n\n\n")
                 break
         else:
             employee_record["photo_url"] = None
-    print('\n\n\n',data,'\n\n\n')
+    # print('\n\n\n',data,'\n\n\n')
     return data
 
    

@@ -36,7 +36,14 @@ frappe.query_reports["Labour Payment"] = {
                 };
             },
             "default": "Plant Labours - SU1"
-        }
+        },
+        {
+            "fieldname": "status",
+            "label": __("Status"),
+            "fieldtype": "Select",
+            "options":"Draft\nSubmitted",
+            "default": "Submitted",
+        },
     ],
    
     

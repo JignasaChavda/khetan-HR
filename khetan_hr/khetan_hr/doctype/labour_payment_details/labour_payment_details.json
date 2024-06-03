@@ -1,5 +1,4 @@
 {
- "_liked_by": "[\"Administrator\"]",
  "actions": [],
  "allow_rename": 1,
  "creation": "2024-03-28 21:52:13.221664",
@@ -25,10 +24,11 @@
   "fine",
   "custom_fine_form",
   "prv_balance",
+  "total_payment",
   "cashpaid",
   "bankpaid",
   "remaining_balance",
-  "total_payment",
+  "net_payment",
   "amended_from"
  ],
  "fields": [
@@ -177,12 +177,18 @@
    "fieldtype": "Float",
    "label": "Standard Shift Hours",
    "precision": "1"
+  },
+  {
+   "fieldname": "net_payment",
+   "fieldtype": "Currency",
+   "label": "Net Payment",
+   "precision": "2"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-05-21 06:47:17.118994",
+ "modified": "2024-06-03 07:12:18.264906",
  "modified_by": "Administrator",
  "module": "Khetan HR",
  "name": "Labour Payment Details",

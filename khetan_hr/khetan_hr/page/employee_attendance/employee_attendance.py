@@ -67,4 +67,3 @@ def get_lwf_details(from_date=None, to_date=None, company=None, department=None,
    return ename
 
 
-
