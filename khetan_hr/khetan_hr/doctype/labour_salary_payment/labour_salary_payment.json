@@ -42,7 +42,8 @@
    "fieldname": "employee_type",
    "fieldtype": "Link",
    "label": "Employee Type",
-   "options": "Employee Type"
+   "options": "Employee Type",
+   "reqd": 1
   },
   {
    "fieldname": "department",
@@ -79,13 +80,14 @@
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
-   "options": "Company"
+   "options": "Company",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-03 13:03:21.916490",
+ "modified": "2024-06-03 13:30:59.890882",
  "modified_by": "Administrator",
  "module": "Khetan HR",
  "name": "Labour Salary Payment",
