@@ -1,6 +1,16 @@
 [
  {
-  "_liked_by": "[\"Administrator\"]",
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Labour Payment Upload",
+  "enabled": 1,
+  "modified": "2024-02-29 11:18:07.210624",
+  "module": "Khetan HR",
+  "name": "Display Employee Type based on Company",
+  "script": "frappe.ui.form.on('Labour Payment Upload', {\n    refresh(frm) {\n    \n\n        // Filter the Employee Type based on the selected company\n        frm.fields_dict['category'].get_query = function(doc, cdt, cdn) {\n            return {\n                filters: {\n                    company: doc.company\n                }\n            };\n        };\n    }\n});\n",
+  "view": "Form"
+ },
+ {
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -12,7 +22,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -24,7 +33,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Bulk Payment",
@@ -36,7 +44,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Card Attendance",
@@ -48,7 +55,6 @@
   "view": "List"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Structure",
@@ -60,7 +66,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -72,7 +77,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Structure",
@@ -84,7 +88,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
@@ -96,19 +99,17 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Employee",
   "enabled": 1,
-  "modified": "2024-06-03 07:33:00.034397",
+  "modified": "2024-06-03 18:53:44.657805",
   "module": "Khetan HR",
   "name": "Show plant name as per company",
-  "script": "function generateNewId(nm, count) {\n    var leftSuffix = '-Left';\n\n    // Check if nm already contains '-Left'\n    if (!nm.endsWith(leftSuffix)) {\n        nm += leftSuffix;\n    }\n\n    var newId = nm + count;\n\n    return frappe.db.exists('Employee', newId).then(function(result) {\n        if (result) {\n            // If ID exists, increment count and try again\n            return generateNewId(nm, count + 1);\n        } else {\n            // If ID doesn't exist, return the unique ID\n            return newId;\n        }\n    });\n}\n\n\n\nfrappe.ui.form.on('Employee', {\n    refresh: function(frm) {\n        var company = frm.doc.company;\n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n            \n            });\n        \n    },\n\n    company: function(frm){\n        var company = frm.doc.company;\n        \n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n                frm.refresh_field('plant');\n            });\n        \n        \n\n    },\n    after_save: function(frm){\n        var emp = frm.doc.employee;\n        var nm = frm.doc.name;\n        var status = frm.doc.status;\n        var rel_date = frm.doc.relieving_date;\n        \n        console.log(emp)\n        \n        \n        if(status == \"Active\" && rel_date===null){\n            frappe.db.set_value('Employee',emp,'attendance_device_id', emp);\n        }\n        else if(status == \"Active\" && rel_date!==null){\n            var new_active_id = emp.split('-')[0];\n            \n            \n            \n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_active_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                        \n                        \n                        frappe.db.set_value('Employee', new_active_id, 'attendance_device_id', new_active_id)\n                        .then(() => {\n                            // Once the first update is complete, update the 'relieving_date'\n                            return frappe.db.set_value('Employee', new_active_id, 'relieving_date', '');\n                        })\n                        .then(() => {\n                            // Once both updates are complete, set the route\n                            frappe.set_route(\"List\", \"Employee\");\n                        })\n                        \n                       \n                       \n                        \n                      \n                        \n\n                    }\n                }\n            });\n            \n        }\n        \n        else if (status == \"Left\"){\n            frappe.db.set_value('Employee',emp,'attendance_device_id', '');\n            var count = 1;\n            var new_id = generateNewId(nm,count);\n            \n\n            \n            \n            new_id.then(function(new_id){\n                console.log(new_id);\n    \n\n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                        \n                    \n                        frappe.set_route(\"List\",\"Employee\");\n                      \n                        \n\n                    }\n                }\n            });\n            })\n            \n        }\n    }\n});\n",
+  "script": "function generateNewId(nm, count) {\n    var leftSuffix = '-Left';\n\n    // Check if nm already contains '-Left'\n    if (!nm.endsWith(leftSuffix)) {\n        nm += leftSuffix;\n    }\n\n    var newId = nm + count;\n\n    return frappe.db.exists('Employee', newId).then(function(result) {\n        if (result) {\n            // If ID exists, increment count and try again\n            return generateNewId(nm, count + 1);\n        } else {\n            // If ID doesn't exist, return the unique ID\n            return newId;\n        }\n    });\n}\n\n\n\nfrappe.ui.form.on('Employee', {\n    refresh: function(frm) {\n        var company = frm.doc.company;\n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n            \n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n            \n            });\n        \n    },\n\n    company: function(frm){\n        var company = frm.doc.company;\n        \n        \n        frappe.db.get_value('Company', company, 'select_unit_')\n        .then(function(records) {\n                var com_unit= records.message;\n                var unit = com_unit.select_unit_\n               \n                console.log(unit)\n                \n                if (unit=='Unit 2')\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant']);\n                }\n                else if(unit=='Unit 1')\n                {\n                    frm.set_df_property('plant', 'options', ['Telescopic Plant']);\n                }\n                else\n                {\n                    frm.set_df_property('plant', 'options', ['Pipe Plant', 'Tundish Plant', 'Buluster Plant','Telescopic Plant']);\n                }\n                frm.refresh_field('plant');\n            });\n        \n        \n\n    },\n    after_save: function(frm) {\n    var emp = frm.doc.employee;\n    var nm = frm.doc.name;\n    var status = frm.doc.status;\n    var rel_date = frm.doc.relieving_date;\n    \n    console.log(emp)\n    \n    if (status == \"Active\" && rel_date === null) {\n        frappe.db.set_value('Employee', emp, 'attendance_device_id', emp);\n    } else if (status == \"Active\" && rel_date !== null) {\n        var new_active_id = emp.split('-')[0];\n\n        if (nm !== new_active_id) {\n            frappe.call({\n                method: 'frappe.client.rename_doc',\n                args: {\n                    doctype: 'Employee',\n                    old_name: frm.doc.name,\n                    new_name: new_active_id,\n                    merge: false\n                },\n                callback: function(response) {\n                    if (response.message) {\n                        frappe.db.set_value('Employee', new_active_id, 'attendance_device_id', new_active_id)\n                        .then(() => {\n                            // Once the first update is complete, update the 'relieving_date'\n                            return frappe.db.set_value('Employee', new_active_id, 'relieving_date', '');\n                        })\n                        .then(() => {\n                            // Once both updates are complete, set the route\n                            frappe.set_route(\"List\", \"Employee\");\n                        });\n                    }\n                }\n            });\n        }\n    } else if (status == \"Left\") {\n        frappe.db.set_value('Employee', emp, 'attendance_device_id', '');\n        var count = 1;\n        var new_id = generateNewId(nm, count);\n        \n        new_id.then(function(new_id) {\n            console.log(new_id);\n\n            if (nm !== new_id) {\n                frappe.call({\n                    method: 'frappe.client.rename_doc',\n                    args: {\n                        doctype: 'Employee',\n                        old_name: frm.doc.name,\n                        new_name: new_id,\n                        merge: false\n                    },\n                    callback: function(response) {\n                        if (response.message) {\n                            frappe.set_route(\"List\", \"Employee\");\n                        }\n                    }\n                });\n            }\n        });\n    } else {\n        console.log(\"pass\");\n    }\n}\n\n});\n",
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -120,7 +121,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Shift Type",
@@ -132,7 +132,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Labour Salary Payment",
@@ -144,7 +143,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Additional Payment",
@@ -156,7 +154,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Salary Slip",
@@ -168,7 +165,6 @@
   "view": "Form"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "docstatus": 0,
   "doctype": "Client Script",
   "dt": "Labour Salary Payment",
