@@ -20,6 +20,7 @@
   "column_break_d2y5m",
   "status",
   "type",
+  "reason_for_penalty",
   "rate_per_coupan",
   "coupan_qty",
   "amount",
@@ -103,8 +104,7 @@
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Status",
-   "options": "Unpaid\nPaid",
-   "read_only": 1
+   "options": "Unpaid\nPaid"
   },
   {
    "fieldname": "type",
@@ -206,12 +206,20 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "depends_on": "eval:doc.type=='Penalty'",
+   "fieldname": "reason_for_penalty",
+   "fieldtype": "Link",
+   "label": "Reason for Penalty",
+   "mandatory_depends_on": "eval:doc.type=='Penalty'",
+   "options": "Penalty Reason"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-06-04 10:55:28.371609",
+ "modified": "2024-06-22 21:45:42.997026",
  "modified_by": "Administrator",
  "module": "Khetan HR",
  "name": "Additional Payment",
