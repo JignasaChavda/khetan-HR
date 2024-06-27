@@ -1,0 +1,38 @@
+{
+ "_liked_by": "[\"Administrator\"]",
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-06-26 13:32:24.940967",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"name\",\"Attendance\"],[\"docstatus\",\"Attendance\"],[\"employee\",\"Attendance\"],[\"employee_name\",\"Attendance\"],[\"custom_employee_type\",\"Attendance\"],[\"department\",\"Attendance\"],[\"company\",\"Attendance\"],[\"attendance_date\",\"Attendance\"],[\"shift\",\"Attendance\"],[\"new_hours\",\"Attendance\"],[\"overtime\",\"Attendance\"],[\"custom_total_hours\",\"Attendance\"],[\"custom_late_hour_deduction\",\"Attendance\"],[\"custom_late_entry\",\"Attendance\"],[\"custom_early_exit\",\"Attendance\"],[\"check_in_time\",\"Attendance\"],[\"check_out_time\",\"Attendance\"],[\"custom_remarks\",\"Attendance\"]],\"order_by\":\"`tabAttendance`.`modified` desc\",\"add_totals_row\":0,\"page_length\":20,\"column_widths\":{\"name\":120,\"employee\":120,\"employee_name\":120,\"custom_employee_type\":120,\"department\":120,\"company\":120,\"attendance_date\":120,\"shift\":120,\"new_hours\":120,\"overtime\":120,\"custom_total_hours\":120,\"custom_late_hour_deduction\":156,\"custom_late_entry\":157,\"custom_early_exit\":120,\"check_in_time\":120,\"check_out_time\":120,\"custom_remarks\":120},\"group_by\":null}",
+ "letter_head": "Khetan Logo",
+ "modified": "2024-06-26 13:33:56.518224",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "Monthly Attendance",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Attendance",
+ "report_name": "Monthly Attendance",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "HR User"
+  },
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "HR Manager"
+  },
+  {
+   "role": "Employee Self Service"
+  }
+ ]
+}

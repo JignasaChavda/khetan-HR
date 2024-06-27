@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2024-06-26 13:46:09.297601",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-06-26 13:46:09.297601",
+ "modified_by": "Administrator",
+ "module": "Khetan HR",
+ "name": "employee_late_entry",
+ "owner": "Administrator",
+ "page_name": "employee_late_entry",
+ "roles": [
+  {
+   "role": "All"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Employee Late Entry Report"
+}

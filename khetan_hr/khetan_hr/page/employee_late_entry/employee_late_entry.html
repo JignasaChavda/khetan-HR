@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Attendance Table</title>
+<style>
+  body {
+    margin: 20px;
+    font-size: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #000000;
+    padding: 4px;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    white-space: nowrap;
+  }
+
+  td {
+    white-space: nowrap;
+  }
+
+  h3 {
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  col:nth-child(1) { width: 5%; }
+  col:nth-child(2) { width: 7%; }
+  col:nth-child(3) { width: 15%; }
+  col:nth-child(4) { width: 5%; }
+  col:nth-child(5) { width: 7%; }
+  col:nth-child(6) { width: 7%; }
+  col:nth-child(7) { width: 7%; }
+  col:nth-child(8) { width: 7%; }
+  col:nth-child(9) { width: 7%; }
+  col:nth-child(10) { width: 5%; }
+  col:nth-child(11) { width: 7%; }
+  col:nth-child(12) { width: 7%; }
+  col:nth-child(13) { width: 7%; }
+  col:nth-child(14) { width: 7%; }
+  col:nth-child(15) { width: 10%; }
+  col:nth-child(16) { width: 10%; }
+
+  @media print {
+    body {
+      margin: 10px !important;
+      font-size: 12px !important;
+    }
+
+    th, td {
+      font-size: 10px !important;
+      padding: 4px !important;
+      width: 100% !important;
+    }
+
+    th {
+      white-space: normal !important;
+    }
+
+    table {
+      table-layout: fixed !important;
+    }
+
+    td:nth-child(3) {
+      white-space: normal !important;
+    }
+
+    td:nth-child(15) {
+      white-space: normal !important;
+    }
+
+    col:nth-child(1) { width: 3% !important; }
+    col:nth-child(2) { width: 7% !important; }
+    col:nth-child(3) { width: 17% !important; }
+    col:nth-child(4) { width: 4% !important; }
+    col:nth-child(5) { width: 7% !important; }
+    col:nth-child(6) { width: 7% !important; }
+    col:nth-child(7) { width: 7% !important; }
+    col:nth-child(8) { width: 7% !important; }
+    col:nth-child(9) { width: 5% !important; }
+    col:nth-child(10) { width: 5% !important; }
+    col:nth-child(11) { width: 5% !important; }
+    col:nth-child(12) { width: 4% !important; }
+    col:nth-child(13) { width: 5% !important; }
+    col:nth-child(14) { width: 7% !important; }
+    col:nth-child(15) { width: 7% !important; }
+    col:nth-child(16) { width: 14% !important; }
+  }
+</style>
+</head>
+<body>
+<h3>{{company}}</h3>
+<!-- <h4 style="font-size:20px;">Department: {{ department }}</h4> -->
+<table>
+  <colgroup>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>E. Code</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Totl Hours</th>
+      <th>Chek in time</th>
+      <th>Late entry hours</th>
+      <th>Late Entry Deduction</th>
+     
+      <th>Allow Late Entry Relaxation</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for department in ename %}
+    <tr>
+        <td>{{ department._index+1 }}</td>
+        <td>{{ department.employee }}</td>
+        <td>{{ department.employee_name }}</td>
+        <td>{{ department.attendance_date }}</td>
+        <td>{{ department.custom_total_hours }}</td>
+        <td>{{ department.check_in_time }}</td>
+        <td>{{ department.custom_late_entry }}</td>
+        <td>{{ department.custom_late_hour_deduction }}</td>
+        
+        <td style="text-align: center;">
+            <input type="checkbox" class="check-column" data-id="{{ department.employee }}" data-department="{{ department.department }}"  data-name="{{ department.name }}" {% if department.custom_allow_late_entry_relaxation == 1 %} checked {% endif %}>
+
+        </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
