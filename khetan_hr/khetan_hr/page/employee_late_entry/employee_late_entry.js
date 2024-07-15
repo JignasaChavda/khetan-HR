@@ -1,7 +1,7 @@
 frappe.pages['employee_late_entry'].on_page_load = function(wrapper) {
     var page = frappe.ui.make_app_page({
         parent: wrapper,
-        title: 'Employee Report',
+        title: 'Employee Late Entry Relaxation Report',
         single_column: true
     });
 

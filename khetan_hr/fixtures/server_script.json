@@ -16,6 +16,7 @@
   "script_type": "DocType Event"
  },
  {
+  "_liked_by": "[\"jignasa.chavda@sanskartechnolab.in\"]",
   "allow_guest": 0,
   "api_method": "attendance_flow",
   "cron_format": null,
@@ -64,7 +65,6 @@
   "script_type": "DocType Event"
  },
  {
-  "_liked_by": "[\"Administrator\"]",
   "allow_guest": 0,
   "api_method": null,
   "cron_format": null,
@@ -318,6 +318,23 @@
   "name": "Do not allow additional payment save of previous months",
   "reference_doctype": "Additional Payment",
   "script": "date = doc.posting_date\nemp = doc.employee\nemp_nm = doc.employee_name\nemp_type = doc.employee_type\n\nif emp_type in ['Office Staff - SU1', 'Plant Staff - SU1']:\n    cur_month_slip = frappe.db.get_value(\"Salary Slip\", \n                            filters={'employee': emp,\n                                    'docstatus': 1,\n                                    'start_date': ['<=', date],\n                                    'end_date': ['>=', date]},\n                            fieldname='name')\n    \n    if cur_month_slip:\n        sal_slip_link = frappe.utils.get_link_to_form(\"Salary slip\", cur_month_slip)\n        error_message = 'Salary Slip of Employee ' + emp + \": \" + emp_nm + \" is already submitted: \" + sal_slip_link\n        frappe.throw(error_message)\n        \n        \n\nif emp_type=='Plant Labours - SU1':\n    cur_month_labour_sal = frappe.db.get_value(\"Labour Salary Payment\", \n                            filters={'docstatus': 1,\n                                    'from_date': ['<=', date],\n                                    'to_date': ['>=', date]},\n                            fieldname='name')\n    \n    if cur_month_labour_sal:\n        \n        exists_lab_link = frappe.utils.get_link_to_form('Labour Salary Payment',cur_month_labour_sal)\n        exists_doc = frappe.get_doc('Labour Salary Payment', cur_month_labour_sal)\n        exists_pay_details = exists_doc.get('payment_details')\n        \n        for data in exists_pay_details:\n            exists_emp = data.employee\n\n            if emp == emp:\n                error_message = 'Labour Salary of Employee ' + emp + \": \" + emp_nm + \" is already submitted: \" + exists_lab_link\n                frappe.throw(error_message)\n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n        \n       \n        \n                            \n                            \n                            ",
+  "script_type": "DocType Event"
+ },
+ {
+  "_liked_by": "[\"Administrator\"]",
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Save (Submitted Document)",
+  "event_frequency": "All",
+  "modified": "2024-07-15 15:57:42.301561",
+  "module": "Khetan HR",
+  "name": "Remove Late Entry Deduction Hour",
+  "reference_doctype": "Attendance",
+  "script": "allow_late_entry = doc.custom_allow_late_entry_relaxation\nlate_hour_deduction = float(doc.custom_late_hour_deduction)\ntotal_hours = float(doc.custom_total_hours)\n\nif allow_late_entry ==1:\n    total_hours = total_hours + late_hour_deduction\n    rounded_total_hours = round(total_hours, 2)\n    total_hours_str = f\"{total_hours:.2f}\"\n    \n    frappe.db.set_value('Attendance', doc.name, 'custom_total_hours', total_hours_str)\n    doc.reload()\n    \nelse:\n    if late_hour_deduction is not None:\n        total_hours = total_hours - late_hour_deduction\n        rounded_total_hours = round(total_hours, 2)\n        total_hours_str = f\"{total_hours:.2f}\"\n        \n        frappe.db.set_value('Attendance', doc.name, 'custom_total_hours', total_hours_str)\n        doc.reload()\n        \n    ",
   "script_type": "DocType Event"
  }
 ]

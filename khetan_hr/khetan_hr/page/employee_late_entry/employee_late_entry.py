@@ -76,6 +76,8 @@ def update_employee_status(name, employee_id, is_checked, from_date, to_date):
 
     # Check the current state of the checkbox in the database
     current_state = frappe.db.get_value('Attendance', name, 'custom_allow_late_entry_relaxation')
+    cur_total_hours = frappe.db.get_value('Attendance', name, 'custom_total_hours')
+    late_hour_ded = frappe.db.get_value('Attendance', name, 'custom_late_hour_deduction')
 
     # If the checkbox is being checked
     if status_value == 1:
@@ -85,6 +87,14 @@ def update_employee_status(name, employee_id, is_checked, from_date, to_date):
                 _("<span style='font-size:13px;'> Late Entry Deduction is allowed for only {0} days</span>").format(lateentry_limit.custom_late_entry_relaxation),
                 title="Limit Exceeded"
             )
+        total_hours = float(cur_total_hours) + float(late_hour_ded)
+        rounded_total_hours = round(total_hours, 2)
+        total_hours_str = f"{total_hours:.2f}"
+    else:
+        total_hours = float(cur_total_hours) - float(late_hour_ded)
+        rounded_total_hours = round(total_hours, 2)
+        total_hours_str = f"{total_hours:.2f}"
 
     # Update the Attendance document if all checks are passed
     frappe.db.set_value('Attendance', {'name': name}, 'custom_allow_late_entry_relaxation', status_value)
+    frappe.db.set_value('Attendance', name, 'custom_total_hours', total_hours_str)
