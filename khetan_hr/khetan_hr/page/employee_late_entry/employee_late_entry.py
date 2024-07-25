@@ -43,6 +43,10 @@ def get_lwf_details(from_date=None, to_date=None, employee=None, company=None):
    
     ename = frappe.db.sql(query, (from_date, to_date, employee, company, company), as_dict=True)
 
+    for department in ename:
+        if 'attendance_date' in department and department['attendance_date']:
+            department['attendance_date'] = department['attendance_date'].strftime('%d-%m-%Y')
+
     return ename
 
 
@@ -79,22 +83,47 @@ def update_employee_status(name, employee_id, is_checked, from_date, to_date):
     cur_total_hours = frappe.db.get_value('Attendance', name, 'custom_total_hours')
     late_hour_ded = frappe.db.get_value('Attendance', name, 'custom_late_hour_deduction')
 
+    allow_over_late_entry = frappe.db.get_value('Employee', employee_id, 'custom_allow_over_late_entry_relaxation')
+
     # If the checkbox is being checked
     if status_value == 1:
-        # If the count is already equal to or greater than the allowed limit, raise an error
-        if relaxation_count >= lateentry_limit.custom_late_entry_relaxation:
-            frappe.throw(
-                _("<span style='font-size:13px;'> Late Entry Deduction is allowed for only {0} days</span>").format(lateentry_limit.custom_late_entry_relaxation),
-                title="Limit Exceeded"
-            )
+        # Check if the 'allow_over_late_entry' checkbox is not checked
+        if not allow_over_late_entry:
+            # If the count is already equal to or greater than the allowed limit, raise an error
+            if relaxation_count >= lateentry_limit.custom_late_entry_relaxation:
+                frappe.throw(
+                    _("<span style='font-size:13px;'> Late Entry Deduction is allowed for only {0} days</span>").format(lateentry_limit.custom_late_entry_relaxation),
+                    title="Limit Exceeded"
+                )
+        # total_hours = float(cur_total_hours) + float(late_hour_ded)
+        # rounded_total_hours = round(total_hours, 2)
+        # total_hours_str = f"{total_hours:.2f}"
+
+
         total_hours = float(cur_total_hours) + float(late_hour_ded)
-        rounded_total_hours = round(total_hours, 2)
-        total_hours_str = f"{total_hours:.2f}"
+            
+        is_ending_with_zero = str(cur_total_hours).endswith('0')
+        
+        if is_ending_with_zero==True:
+            final_total_hours = f"{total_hours:.2f}"
+        else:
+            final_total_hours = round(total_hours, 2)
+
+
     else:
+        # total_hours = float(cur_total_hours) - float(late_hour_ded)
+        # rounded_total_hours = round(total_hours, 2)
+        # total_hours_str = f"{total_hours:.2f}"
+
         total_hours = float(cur_total_hours) - float(late_hour_ded)
-        rounded_total_hours = round(total_hours, 2)
-        total_hours_str = f"{total_hours:.2f}"
+            
+        is_ending_with_zero = str(cur_total_hours).endswith('0')
+        
+        if is_ending_with_zero==True:
+            final_total_hours = f"{total_hours:.2f}"
+        else:
+            final_total_hours = round(total_hours, 2)
 
     # Update the Attendance document if all checks are passed
     frappe.db.set_value('Attendance', {'name': name}, 'custom_allow_late_entry_relaxation', status_value)
-    frappe.db.set_value('Attendance', name, 'custom_total_hours', total_hours_str)
+    frappe.db.set_value('Attendance', name, 'custom_total_hours', final_total_hours)
