@@ -26,8 +26,8 @@ class AdditionalSalary(Document):
 		self.validate_employee_referral()
 		self.validate_duplicate_additional_salary()
 		
-		if self.custom_employee_type != 'Plant Labours - SU1':
-			self.validate_salary_structure()
+		# if self.custom_employee_type != 'Plant Labours - SU1':
+		# 	self.validate_salary_structure()
 
 		if self.amount < 0:
 			frappe.throw(_("Amount should not be less than zero"))
